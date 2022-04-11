@@ -399,3 +399,5 @@ FodyWeavers.xsd
 
 # Add Sqlite db
 *.db
+*.db-shm
+*.db-wal
