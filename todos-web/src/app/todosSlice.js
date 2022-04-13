@@ -9,7 +9,7 @@ const initialState = {
 
 export const fetchTodos = createAsyncThunk(
   'todos/fetchTodos',
-  async (thunkApi) =>
+  async () =>
     await Api.getTodos()
 );
 
@@ -17,7 +17,7 @@ const todosSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    addTask: (state, action) => {
+    createTodo: (state, action) => {
       state.todoList.push(action.payload)
     },
   },
@@ -33,7 +33,7 @@ const todosSlice = createSlice({
   },
 });
 
-export const { addTask } = todosSlice.actions;
+export const { createTodo } = todosSlice.actions;
 
 export const selectTodos = (state) => state.todos.todoList;
 

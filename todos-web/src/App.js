@@ -4,6 +4,7 @@ import {
   fetchTodos
 } from './app/todosSlice';
 import TodoList from './features/todoList/TodoList';
+import AddTodo from './features/addTodo/AddTodo';
 import './App.css';
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
   return (
     <div className="App">
       <TodoList />
+      <footer>
+        <AddTodo />
+      </footer>
     </div>
   );
 }
