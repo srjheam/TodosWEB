@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createTodo } from '../../app/todosSlice';
-import TitleInput from '../titleInput/TitleInput'
+import TitleInput from '../titleInput/TitleInput';
+import DueDateInput from '../dueDateInput/DueDateInput';
 import * as Api from '../../app/todosApi';
 
 function AddTodo() {
@@ -10,14 +11,14 @@ function AddTodo() {
   const [id, setId] = useState(0);
   const [title, setTitle] = useState('');
   const [isCompleted, setIsCompleted] = useState(false);
-  const [dueDate, setDueDate] = useState(null);
+  const [dueDate, setDueDate] = useState('');
 
   const addTodo = async () => {
     const todo = {
       id,
       title,
       isCompleted,
-      dueDate
+      dueDate: Number.isInteger(dueDate) ? dueDate : null
     };
 
     const response = await Api.postTodo(todo);
@@ -29,7 +30,7 @@ function AddTodo() {
     setId(0);
     setTitle('');
     setIsCompleted(false);
-    setDueDate(null);
+    setDueDate('');
   };
 
   const handleKeyDown = async (event) => {
@@ -41,6 +42,10 @@ function AddTodo() {
   return (
     <div className="AddTodo">
       <TitleInput title={title} handleTitleChange={setTitle} handleKeyDown={handleKeyDown}  />
+      <div>
+        <DueDateInput dueDate={dueDate} onChange={setDueDate} />
+        <button onClick={addTodo}>Add</button>
+      </div>
     </div>
   );
 }
